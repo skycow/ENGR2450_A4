@@ -2,7 +2,7 @@
 # include <iomanip>
 
 using namespace std;
-const int nn = 6, mm = 4;
+const int nn = 5, mm = 3;
 
 void mtranspose(double M[nn][mm], double MT[mm][nn], int n, int m)
 {//Calculates transpose of matrix M(nxm) as MT(mxn)
@@ -183,7 +183,7 @@ void NLRegress(double Z[nn][mm], double y[], double a[], int n, int m){
 
 /*void BuildZP(double Z[nn][mm], double x[],int n,int m){
 	for(int i=0; i<n; i++){
-		for(int j=0; j<m+1; j++){
+		for(int j=0; j<m; j++){
 			Z[i][j] = pow(x[i],j);
 		}
 	}
@@ -196,6 +196,15 @@ void BuildZP(double Z[nn][mm], double x[],int n,int m){
 		}
 		Z[i][m-1] = sqrt(x[i]);
 	}
+}
+
+void BuildZM(double Z[nn][mm], double x[nn][mm], int n, int m){
+	for (int i = 0; i < n; i++){
+		Z[i][0] = 1.0;
+		for (int j = 1; j < m; j++){
+				Z[i][j] = x[i][j - 1];
+			}
+	}
 }
 
 void printvector(double u[], int n)
@@ -220,15 +229,19 @@ int main(){
 
 	//double x[nn] = {0.2, 0.5, 0.8, 1.2, 1.7, 2, 2.3};
 	//double y[nn] = {500, 700, 1000, 1200, 2200, 2650, 3750};
-	double x[nn] = {2.5, 3.5, 4.5, 5.5, 6.5, 7.5};
-	double y[nn] = {10, 9, 8, 6, 2, -2};
-
+	//double x[nn] = {2.5, 3.5, 4.5, 5.5, 6.5, 7.5};
+	//double y[nn] = {10, 9, 8, 6, 2, -2};
+	double xx[nn][mm] = { { 2.0, 1.0, 4.5 }, { 3.2, 1.2, 5.5 }, { 4.0, 1.5, 2.5 }, { 3.0, 1.8, 4.0 }, { 2.5, 2.0, 5.0 }
+};
+	double y[nn] = { 30.1, 31.2, 24.0, 32.1, 35.1 };
 
 	double Z[nn][mm], a[mm], yf[nn];
 
 	int m = mm - 1;
 
-	BuildZP(Z, x, nn, mm);
+	//BuildZP(Z, x, nn, mm);
+	BuildZM(Z, xx, nn, mm);
+	printmatrix(xx, nn, mm);
 
 	printmatrix(Z, nn, mm);
 
@@ -236,7 +249,7 @@ int main(){
 	
 	multiply_matrix_to_vector(Z, a, yf, nn, mm);
 	for(int i = 0; i < nn; i++){
-		cout<<setw(10)<<x[i]<<setw(10)<<y[i]<<setw(10)<<yf[i]<<endl;
+		cout<<setw(10)<<xx[i]<<setw(10)<<y[i]<<setw(10)<<yf[i]<<endl;
 	}
 	cout<<endl;
 
