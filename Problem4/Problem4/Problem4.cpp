@@ -54,22 +54,28 @@ int main(){
 	double yy[nn + 1] = { -0.45,-0.6,0.7,1.88,6 };
 	double ea2[nn], xi2 = 1.15, yint2[nn];
 
+	cout << "Problem 4" << endl << endl;
 	
+	cout << "a) Problem 18.6" << endl << endl;
 
 	NewtInt(x, y, nn, xi, yint, ea); 
-
+	cout << "Solution vector:" << endl;
 	printvector(yint, nn);
 	cout<<endl;
+	cout << "Error vector:" << endl;
 	printvector(ea, nn-1);
 
-	cout << endl;
+	cout << endl << "-------------------"<<endl<<endl;
 
+	cout << "b) Problem 20.36" << endl << endl;
+	
 	NewtInt(xx, yy, nn, xi2, yint2, ea2);
-
+	cout << "Solution vector:" << endl;
 	printvector(yint2, nn);
 	cout << endl;
+	cout << "Error vector:" << endl;
 	printvector(ea2, nn-1);
 
-
+	cout << endl;
 	return 0;
 }
