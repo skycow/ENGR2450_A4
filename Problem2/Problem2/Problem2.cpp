@@ -204,7 +204,8 @@ void BuildZM(double Z[nn][mm], double x[nn][mm], int n, int m){
 		for (int j = 1; j < m; j++){
 				Z[i][j] = x[i][j - 1];
 			}
-	}
+	}
+
 }
 
 void printvector(double u[], int n)

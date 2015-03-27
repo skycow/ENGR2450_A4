@@ -3,7 +3,7 @@
 
 using namespace std;
 
-const int nn = 4, mm = 10;
+const int nn = 4;
 
 void NewtInt(double x[], double y[], int n, double xi, double yint[], double ea[]){
 	double fdd[nn][nn];
@@ -35,21 +35,41 @@ void printvector(double u[], int n)
 
 int main(){
 
+	//18.6n4m6
 	//double x[mm] = {1, 2, 3, 5, 7, 8};
 	//double y[mm] = {3, 6, 19, 99, 291, 444};
 	//double ea[mm], xi = 4.0, yint[mm];
+	//double x[mm] = { 1, 2, 3, 5, 7, 8 };
+	//double y[mm] = { 3, 6, 19, 99, 291, 444 };
+	//double ea[mm], xi = 4.0, yint[mm];
+
 	//double x[5] = {2.5,3.2,3.9,4.2,4.5,5.2,6.3,7.1,8.2};
 	//double y[5] = {34,70,130,170,205,331,618,900,1400};
-	double x[5] = {1, 2, 3, 5, 7};
-	double y[5] = {3, 6, 19, 99, 291};
-	double ea[4], xi = 4.0, yint[4];
-	int n = 4;
+	double x[nn+1] = {1, 2, 3, 5, 7};
+	double y[nn+1] = {3, 6, 19, 99, 291};
+	double ea[nn], xi = 4.0, yint[nn];
 
-	NewtInt(x, y, n, xi, yint, ea); 
+	//20.36
+	double xx[nn + 1] = { 0.25,0.75,1.25,1.5,2 };
+	double yy[nn + 1] = { -0.45,-0.6,0.7,1.88,6 };
+	double ea2[nn], xi2 = 1.15, yint2[nn];
 
-	printvector(yint, n);
+	
+
+	NewtInt(x, y, nn, xi, yint, ea); 
+
+	printvector(yint, nn);
 	cout<<endl;
-	printvector(ea, n);
+	printvector(ea, nn-1);
+
+	cout << endl;
+
+	NewtInt(xx, yy, nn, xi2, yint2, ea2);
+
+	printvector(yint2, nn);
+	cout << endl;
+	printvector(ea2, nn-1);
+
 
 	return 0;
 }
